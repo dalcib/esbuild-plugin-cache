@@ -1,0 +1,30 @@
+{
+  "name": "esbuild-plugin-deno-cache",
+  "version": "0.1.0",
+  "description": "Esbuid plugin to use Deno cache to http/https imports",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test.mjs",
+    "build": "esbuild index.ts > index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dalcib/esbuild-plugin-deno-cache.git"
+  },
+  "keywords": [
+    "esbuild",
+    "deno",
+    "cache"
+  ],
+  "author": "Dalci de Jesus Bagolin <dalci.b+npm@gmail.com> (https://github.org/dalcib)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dalcib/esbuild-plugin-deno-cache/issues"
+  },
+  "homepage": "https://github.com/dalcib/esbuild-plugin-deno-cache#readme",
+  "dependencies": {
+    "deno-cache": "^0.2.10",
+    "esbuild": "^0.8.20"
+  }
+}
