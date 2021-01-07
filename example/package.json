@@ -1,0 +1,14 @@
+{
+  "name": "ebtest",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node --experimental-json-modules build.js"
+  },
+  "keywords": [],
+  "author": "Dalci de Jesus Bagolin <dalci.b+npm@gmail.com> (https://github.org/dalcib)",
+  "license": "MIT"
+}

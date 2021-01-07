@@ -1,6 +1,6 @@
 {
   "name": "esbuild-plugin-deno-cache",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Esbuid plugin to use Deno cache to http/https imports",
   "main": "index.js",
   "type": "module",
@@ -25,6 +25,7 @@
   "homepage": "https://github.com/dalcib/esbuild-plugin-deno-cache#readme",
   "dependencies": {
     "deno-cache": "^0.2.10",
+    "deno-importmap": "^0.1.4",
     "esbuild": "^0.8.20"
   }
 }
