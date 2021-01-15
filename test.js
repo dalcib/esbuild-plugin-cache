@@ -1,5 +1,5 @@
 import esbuild from 'esbuild'
-import { denoCachePlugin } from './index.js'
+import { cache } from './index.js'
 import { readdirSync, rmdirSync } from 'fs'
 
 process.env.DENO_DIR = 'cache'
@@ -13,14 +13,14 @@ async function test(del) {
         console.log(React.version)`,
       },
       bundle: true,
-      plugins: [denoCachePlugin({}, 'cache')],
+      plugins: [cache({}, 'cache')],
       minify: true,
       write: false,
     })
     .catch(() => process.exit(1))
 
   const dir = readdirSync('./cache/deps/https/cdn.skypack.dev')
-  if (dir.sort().join() === cache.sort().join() && result.outputFiles[0].text.length === 7689) {
+  if (dir.sort().join() === caches.sort().join() && result.outputFiles[0].text.length === 7690) {
     console.log('✅')
   } else {
     console.error('❌')
@@ -28,7 +28,7 @@ async function test(del) {
   if (del) rmdirSync('cache', { recursive: true })
 }
 
-const cache = [
+const caches = [
   '4834c6ec23318b86dbda3e60f4b27c1e6dcc83530831a9037b48e561dd9aaf50',
   '4834c6ec23318b86dbda3e60f4b27c1e6dcc83530831a9037b48e561dd9aaf50.metadata.json',
   'dd2aa43bb2b8a969db6c96f31297b4a5952cde2658d25bfa472c97d3d649d363',

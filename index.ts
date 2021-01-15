@@ -3,7 +3,7 @@ import { readFile } from 'fs/promises'
 import { resolve } from 'deno-importmap'
 import { join } from 'path'
 
-export function denoCachePlugin({ importmap = { imports: {} }, directory }) {
+export function cache({ importmap = { imports: {} }, directory }) {
   DenoCache.configure({ directory })
   return {
     name: 'deno-cache',

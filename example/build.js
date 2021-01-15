@@ -1,14 +1,14 @@
 import esbuild from 'esbuild'
-import { denoCachePlugin } from '../index.js'
-import importmap from './importmap.json'
+import { cache } from '../index.js'
+import importmap from './import_map.json'
 
 async function build() {
   const result = await esbuild
     .build({
-      entryPoints: ['./index.js'],
+      entryPoints: ['./app.jsx'],
       bundle: true,
       format: 'esm',
-      plugins: [denoCachePlugin({ importmap, directory: './cache' })],
+      plugins: [cache({ importmap, directory: './cache' })],
       outfile: 'bundle.js',
       loader: { '.js': 'jsx' },
     })
