@@ -25,9 +25,9 @@
   "author": "Dalci de Jesus Bagolin <dalci.b+npm@gmail.com> (https://github.org/dalcib)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dalcib/esbuild-plugin-deno-cache/issues"
+    "url": "https://github.com/dalcib/esbuild-plugin-cache/issues"
   },
-  "homepage": "https://github.com/dalcib/esbuild-plugin-deno-cache#readme",
+  "homepage": "https://github.com/dalcib/esbuild-plugin-cache#readme",
   "dependencies": {
     "deno-cache": "^0.2.12",
     "deno-importmap": "^0.1.5",
