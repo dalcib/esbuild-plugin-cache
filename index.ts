@@ -1,4 +1,4 @@
-import { Plugin } from './node_modules/esbuild/lib/main.d.ts'
+import { Plugin } from './node_modules/esbuild/lib/main.ts'
 import * as DenoCache from 'deno-cache'
 import { readFile } from 'fs/promises'
 import { resolve } from 'deno-importmap'

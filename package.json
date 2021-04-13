@@ -1,9 +1,10 @@
 {
   "name": "esbuild-plugin-cache",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Esbuid plugin to use cache for http/https",
   "main": "index.js",
   "type": "module",
+  "typings": "index.d.ts",
   "exports": {
     "import": "./index.js",
     "require": "./index.cjs"
@@ -11,7 +12,9 @@
   "scripts": {
     "test": "node test.js",
     "build": "esbuild index.ts > index.js",
-    "cjs": "esbuild --format=cjs index.ts > index.cjs"
+    "cjs": "esbuild --format=cjs index.ts > index.cjs",
+    "types": "tsc ./index.ts --declaration --emitDeclarationOnly --out index.js --module amd --target es2015",
+    "postpublish": "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag v$PACKAGE_VERSION && git push --tags"
   },
   "repository": {
     "type": "git",
@@ -30,7 +33,9 @@
   "homepage": "https://github.com/dalcib/esbuild-plugin-cache#readme",
   "dependencies": {
     "deno-cache": "^0.2.12",
-    "deno-importmap": "^0.1.6",
-    "esbuild": "^0.8.32"
+    "deno-importmap": "^0.1.6"
+  },
+  "devDependencies": {
+    "esbuild": "^0.11.10"
   }
 }
