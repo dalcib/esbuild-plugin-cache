@@ -1,4 +1,4 @@
-import { Plugin } from './../node_modules/esbuild/lib/main.d.ts'
+import { Plugin } from 'https://deno.land/x/esbuild@v0.11.10/mod.d.ts'
 import * as Cache from 'https://deno.land/x/cache/mod.ts'
 import { resolve } from 'https://deno.land/x/importmap/mod.ts'
 import { join } from 'https://deno.land/std/path/mod.ts'

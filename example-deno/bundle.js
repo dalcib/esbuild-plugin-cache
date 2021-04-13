@@ -1,4 +1,5 @@
-// deno-cache:https://cdn.skypack.dev/-/object-assign@v4.1.1-LbCnB3r2y2yFmhmiCfPn/dist=es2020/object-assign.js
+ (() => new EventSource("/esbuild").onmessage = () => location.reload())();
+// deno-cache:https://cdn.skypack.dev/-/object-assign@v4.1.1-LbCnB3r2y2yFmhmiCfPn/dist=es2020,mode=imports/optimized/object-assign.js
 /*
 object-assign
 (c) Sindre Sorhus
@@ -69,7 +70,7 @@ var objectAssign = shouldUseNative() ? Object.assign : function(target, source) 
 };
 var object_assign_default = objectAssign;
 
-// deno-cache:https://cdn.skypack.dev/-/react@v17.0.1-tOtrZxBRexARODgO0jli/dist=es2020/react.js
+// deno-cache:https://cdn.skypack.dev/-/react@v17.0.1-yH0aYV1FOvoIPeKBbHxg/dist=es2020,mode=imports/optimized/react.js
 function createCommonjsModule(fn, basedir, module) {
   return module = {
     path: basedir,
@@ -400,7 +401,7 @@ var useRef = react.useRef;
 var useState = react.useState;
 var version = react.version;
 
-// deno-cache:https://cdn.skypack.dev/-/scheduler@v0.20.1-K7rlfsuSjvz1sBxLXfP2/dist=es2020/scheduler.js
+// deno-cache:https://cdn.skypack.dev/-/scheduler@v0.20.2-PAU9F1YosUNPKr7V4s0j/dist=es2020,mode=imports/optimized/scheduler.js
 function createCommonjsModule2(fn, basedir, module) {
   return module = {
     path: basedir,
@@ -712,7 +713,7 @@ var unstable_scheduleCallback = scheduler.unstable_scheduleCallback;
 var unstable_shouldYield = scheduler.unstable_shouldYield;
 var unstable_wrapCallback = scheduler.unstable_wrapCallback;
 
-// deno-cache:https://cdn.skypack.dev/-/react-dom@v17.0.1-DtIXT56q6U8PbgLMrBhE/dist=es2020/react-dom.js
+// deno-cache:https://cdn.skypack.dev/-/react-dom@v17.0.1-oZ1BXZ5opQ1DbTh7nu9r/dist=es2020,mode=imports/optimized/react-dom.js
 function createCommonjsModule3(fn, basedir, module) {
   return module = {
     path: basedir,
@@ -7081,10 +7082,20 @@ var unstable_createPortal$1 = reactDom.unstable_createPortal;
 var unstable_renderSubtreeIntoContainer$1 = reactDom.unstable_renderSubtreeIntoContainer;
 var version$1 = reactDom.version;
 
-// index.js
+// index.tsx
 var App = () => {
   return /* @__PURE__ */ react_default.createElement("div", {
-    className: "box"
-  }, "Whatever.");
+    className: "App"
+  }, /* @__PURE__ */ react_default.createElement("header", {
+    className: "App-header"
+  }, /* @__PURE__ */ react_default.createElement("h1", null, "Esbuild cache plugin with Deno."), /* @__PURE__ */ react_default.createElement("p", null, "Edit ", /* @__PURE__ */ react_default.createElement("code", null, "index.tsx"), " and save to reload!"), /* @__PURE__ */ react_default.createElement("a", {
+    className: "App-link",
+    href: "https://reactjs.org",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "Learn React")));
 };
 react_dom_default.render(/* @__PURE__ */ react_default.createElement(App, null), document.getElementById("root"));
+export {
+  App
+};
