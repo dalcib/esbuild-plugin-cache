@@ -30,7 +30,7 @@
   "homepage": "https://github.com/dalcib/esbuild-plugin-cache#readme",
   "dependencies": {
     "deno-cache": "^0.2.12",
-    "deno-importmap": "^0.1.5",
+    "deno-importmap": "^0.1.6",
     "esbuild": "^0.8.32"
   }
 }

@@ -1,8 +1,7 @@
-import { Plugin } from './node_modules/esbuild/lib/main.d.ts'
-import * as DenoCache from 'deno-cache'
-import { readFile } from 'fs/promises'
-import { resolve } from 'deno-importmap'
-import { join } from 'path'
+import { Plugin } from './../node_modules/esbuild/lib/main.d.ts'
+import * as Cache from 'https://deno.land/x/cache/mod.ts'
+import { resolve } from 'https://deno.land/x/importmap/mod.ts'
+import { join } from 'https://deno.land/std/path/mod.ts'
 
 interface Config {
   importmap: { imports: { [key: string]: string } }
@@ -10,7 +9,7 @@ interface Config {
 }
 
 export function cache({ importmap = { imports: {} }, directory }: Config): Plugin {
-  DenoCache.configure({ directory })
+  Cache.configure({ directory })
   return {
     name: 'deno-cache',
     setup(build) {
@@ -31,8 +30,8 @@ export function cache({ importmap = { imports: {} }, directory }: Config): Plugi
         return { path: join(args.resolveDir, resolvedPath) }
       })
       build.onLoad({ filter: /.*/, namespace: 'deno-cache' }, async (args) => {
-        const file = await DenoCache.cache(args.path, undefined, 'deps')
-        const contents = await readFile(file.path, 'utf8')
+        const file = await Cache.cache(args.path, undefined, 'deps')
+        const contents = await Deno.readTextFile(file.path)
         return { contents }
       })
     },
