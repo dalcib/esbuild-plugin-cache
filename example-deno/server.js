@@ -43,12 +43,13 @@ esbuild.serve({ servedir: './' }, {}).then(() => {
       )
       return clients.push(req)
     }
-    const path = ~url.split('/').pop().indexOf('.') ? url : `/index.html`
+    const path = ~url.split('/').pop().indexOf('.') ? url : `/index.html` //for PWA with router
     const res = await fetch('http://localhost:8000' + path, { method, headers })
     const text = await res.text()
     await req.respond({ body: text, statusCode: res.statusCode, headers: res.headers })
   })
   setTimeout(() => {
-    if (clients.length === 0) Deno.run({ cmd: ['cmd', '/c', 'start', `http://localhost:3000`] })
-  }, 2000)
+    const open = { darwin: ['open'], linux: ['xdg-open'], windows: ['cmd', '/c', 'start'] }
+    if (clients.length === 0) Deno.run({ cmd: [...open[Deno.build.os], 'http://localhost:3000'] })
+  }, 2000) //open the browser only if it is not opened yet
 })
