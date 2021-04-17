@@ -1,3 +1,4 @@
+ (() => new EventSource("/esbuild").onmessage = () => location.reload())();
 // deno-cache:https://cdn.skypack.dev/-/object-assign@v4.1.1-LbCnB3r2y2yFmhmiCfPn/dist=es2020,mode=imports/optimized/object-assign.js
 /*
 object-assign

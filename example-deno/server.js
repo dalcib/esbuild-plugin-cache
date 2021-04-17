@@ -48,8 +48,9 @@ esbuild.serve({ servedir: './' }, {}).then(() => {
     const text = await res.text()
     await req.respond({ body: text, statusCode: res.statusCode, headers: res.headers })
   })
+
   setTimeout(() => {
     const open = { darwin: ['open'], linux: ['xdg-open'], windows: ['cmd', '/c', 'start'] }
     if (clients.length === 0) Deno.run({ cmd: [...open[Deno.build.os], 'http://localhost:3000'] })
-  }, 2000) //open the browser only if it is not opened yet
+  }, 2000) //open the default browser only if it is not opened yet
 })

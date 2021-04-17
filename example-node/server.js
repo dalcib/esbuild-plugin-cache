@@ -21,7 +21,6 @@ esbuild
     banner: { js: ' (() => new EventSource("/esbuild").onmessage = () => location.reload())();' },
     watch: {
       onRebuild(error, result) {
-        console.log(clients)
         clients.forEach((res) => res.write('data: update\n\n'))
         clients.length = 0
         console.log(error ? error : '...')
@@ -42,7 +41,7 @@ esbuild.serve({ servedir: './' }, {}).then(() => {
           Connection: 'keep-alive',
         })
       )
-    const path = ~url.split('/').pop().indexOf('.') ? url : `/index.html`
+    const path = ~url.split('/').pop().indexOf('.') ? url : `/index.html` //for PWA with router
     req.pipe(
       request({ hostname: '0.0.0.0', port: 8000, path, method, headers }, (prxRes) => {
         res.writeHead(prxRes.statusCode, prxRes.headers)
@@ -51,7 +50,10 @@ esbuild.serve({ servedir: './' }, {}).then(() => {
       { end: true }
     )
   }).listen(3000)
+
   setTimeout(() => {
-    if (clients.length === 0) spawn('cmd', ['/c', 'start', `http://localhost:3000`])
-  }, 1000)
+    const op = { darwin: ['open'], linux: ['xdg-open'], win32: ['cmd', '/c', 'start'] }
+    const ptf = process.platform
+    if (clients.length === 0) spawn(op[ptf][0], [...[op[ptf].slice(1)], `http://localhost:3000`])
+  }, 1000) //open the default browser only if it is not opened yet
 })
