@@ -1,5 +1,5 @@
 declare module "index" {
-    import { Plugin } from './node_modules/esbuild/lib/main.d.ts';
+    import { Plugin } from './node_modules/esbuild/lib/main';
     interface Config {
         importmap: {
             imports: {

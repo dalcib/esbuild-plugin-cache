@@ -26,9 +26,10 @@ esbuild
         console.log(error ? error : '...')
       },
     },
+    //logLevel: 'verbose',
   })
   .then((result, error) => {})
-  .catch(() => process.exit(1))
+  .catch(() => Deno.exit(1))
 
 esbuild.serve({ servedir: './' }, {}).then(() => {
   listenAndServe({ port: 3000 }, async (req) => {

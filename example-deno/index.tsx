@@ -1,5 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { globToRegExp } from 'https://deno.land/std@0.95.0/path/glob.ts'
+
+const regex = globToRegExp('foo/**/*.json', {
+  flags: 'g',
+  extended: true,
+  globstar: true,
+  caseInsensitive: false,
+})
 
 export const App = () => {
   return (
@@ -16,6 +24,7 @@ export const App = () => {
           rel="noopener noreferrer">
           Learn React
         </a>
+        <pre>{regex.toString()}</pre>
       </header>
     </div>
   )

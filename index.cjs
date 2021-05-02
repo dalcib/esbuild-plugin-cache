@@ -52,7 +52,9 @@ function cache({importmap = {imports: {}}, directory}) {
       build.onLoad({filter: /.*/, namespace: "deno-cache"}, async (args) => {
         const file = await DenoCache.cache(args.path, void 0, "deps");
         const contents = await (0, import_promises.readFile)(file.path, "utf8");
-        return {contents};
+        const ext = file.meta.url.split(".").pop();
+        const loader = ext.match(/"j|tsx?$/) ? ext : "js";
+        return {contents, loader};
       });
     }
   };

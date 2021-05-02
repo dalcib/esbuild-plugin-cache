@@ -1,4 +1,4 @@
-import { Plugin } from './node_modules/esbuild/lib/main.ts'
+import { Plugin, Loader } from './node_modules/esbuild/lib/main'
 import * as DenoCache from 'deno-cache'
 import { readFile } from 'fs/promises'
 import { resolve } from 'deno-importmap'
@@ -33,7 +33,9 @@ export function cache({ importmap = { imports: {} }, directory }: Config): Plugi
       build.onLoad({ filter: /.*/, namespace: 'deno-cache' }, async (args) => {
         const file = await DenoCache.cache(args.path, undefined, 'deps')
         const contents = await readFile(file.path, 'utf8')
-        return { contents }
+        const ext = file.meta.url.split('.').pop()
+        const loader = ext.match(/"j|tsx?$/) ? ext : ('js' as Loader)
+        return { contents, loader }
       })
     },
   }
