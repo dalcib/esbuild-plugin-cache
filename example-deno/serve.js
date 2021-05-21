@@ -1,7 +1,7 @@
-// deno run --allow-env --allow-read --allow-write --allow-net --allow-run  server.js
+// deno run --unstable --allow-env --allow-read --allow-write --allow-net --allow-run  serve.js
 import * as esbuild from 'https://deno.land/x/esbuild/mod.js'
-import { cache } from './../deno/mod.ts'
-import { listenAndServe, serve } from 'https://deno.land/std/http/server.ts'
+import { cache } from './../deno/mod.js'
+//import { listenAndServe, serve } from 'https://deno.land/std/http/server.ts'
 
 const importmap = {
   imports: {
@@ -63,7 +63,7 @@ esbuild.serve({ servedir: './' }, {}).then(async () => {
           const res = await fetch('http://localhost:8000' + path, request)
           const text = await res.text()
           try {
-            await respondWith(new Response(text, res))
+            await respondWith(res)
           } catch (error) {
             console.error('%cResponse failed%c:', 'color: #909000', '', error)
           }

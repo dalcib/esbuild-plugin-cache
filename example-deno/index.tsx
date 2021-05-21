@@ -15,7 +15,7 @@ export const App = () => {
       <header className="App-header">
         <h1>Esbuild cache plugin with Deno.</h1>
         <p>
-          Edit <code>index.tsx</code> and save to reload!
+          Edit <code>index.tsx</code> and save to reload!!!!==
         </p>
         <a
           className="App-link"
