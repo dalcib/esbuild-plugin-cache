@@ -52,7 +52,7 @@ console.log(React.version)
 import * as esbuild from 'https://deno.land/x/esbuild/mod.js'
 import { cache } from 'https://deno.land/x/esbuild_plugin_cache/mod.ts'
 
-const importap = {
+const importmap = {
   imports: {
     react: 'https://cdn.skypack.dev/react@17.0.1',
   },
