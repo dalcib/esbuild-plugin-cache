@@ -2,9 +2,9 @@ import * as DenoCache from "deno-cache";
 import {readFile} from "fs/promises";
 import {resolve} from "deno-importmap";
 import {join} from "path";
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-export function cache({importmap = {imports: {}}, directory} = {}) {
+import {createRequire} from "module";
+const locaRequire = createRequire(import.meta.url);
+export function cache({importmap = {imports: {}}, directory}) {
   DenoCache.configure({directory});
   return {
     name: "deno-cache",
@@ -23,11 +23,9 @@ export function cache({importmap = {imports: {}}, directory} = {}) {
             namespace: "deno-cache"
           };
         }
-        return resolvedPath.match(/^[.\/]/)
-          // modules in our codebase
-          ? {path: join(args.resolveDir, resolvedPath)}
-          // node module dependencies (built-in or node_modules installed)
-          : {path: require.resolve(args.path)};
+        if (resolvedPath !== args.path) {
+          return resolvedPath.match(/^[./]/) ? {path: join(args.resolveDir, resolvedPath)} : {path: locaRequire.resolve(resolvedPath)};
+        }
       });
       build.onLoad({filter: /.*/, namespace: "deno-cache"}, async (args) => {
         const file = await DenoCache.cache(args.path, void 0, "deps");
