@@ -3,10 +3,12 @@ import * as DenoCache from 'deno-cache'
 import { readFile } from 'fs/promises'
 import { resolve } from 'deno-importmap'
 import { join } from 'path'
+import { createRequire } from 'module'
+const locaRequire = createRequire(import.meta.url)
 
 interface Config {
-  importmap: { imports: { [key: string]: string } }
-  directory: string
+  importmap?: { imports: { [key: string]: string } }
+  directory?: string
 }
 
 export function cache({ importmap = { imports: {} }, directory }: Config): Plugin {
@@ -28,7 +30,11 @@ export function cache({ importmap = { imports: {} }, directory }: Config): Plugi
             namespace: 'deno-cache',
           }
         }
-        return { path: join(args.resolveDir, resolvedPath) }
+        if (resolvedPath !== args.path) {
+          return resolvedPath.match(/^[./]/)
+            ? { path: join(args.resolveDir, resolvedPath) }
+            : { path: locaRequire.resolve(resolvedPath) }
+        }
       })
       build.onLoad({ filter: /.*/, namespace: 'deno-cache' }, async (args) => {
         const file = await DenoCache.cache(args.path, undefined, 'deps')

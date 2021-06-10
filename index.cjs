@@ -28,6 +28,9 @@ var DenoCache = __toModule(require("deno-cache"));
 var import_promises = __toModule(require("fs/promises"));
 var import_deno_importmap = __toModule(require("deno-importmap"));
 var import_path = __toModule(require("path"));
+var import_module = __toModule(require("module"));
+const import_meta = {};
+const locaRequire = (0, import_module.createRequire)(import_meta.url);
 function cache({importmap = {imports: {}}, directory}) {
   DenoCache.configure({directory});
   return {
@@ -47,7 +50,9 @@ function cache({importmap = {imports: {}}, directory}) {
             namespace: "deno-cache"
           };
         }
-        return {path: (0, import_path.join)(args.resolveDir, resolvedPath)};
+        if (resolvedPath !== args.path) {
+          return resolvedPath.match(/^[./]/) ? {path: (0, import_path.join)(args.resolveDir, resolvedPath)} : {path: locaRequire.resolve(resolvedPath)};
+        }
       });
       build.onLoad({filter: /.*/, namespace: "deno-cache"}, async (args) => {
         const file = await DenoCache.cache(args.path, void 0, "deps");
