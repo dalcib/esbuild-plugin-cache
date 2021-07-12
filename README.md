@@ -6,7 +6,7 @@ The plugin allows to use http/https imports without installing npm packages on n
 
 It also allows to use [import-maps](https://github.com/WICG/import-maps) .
 
-It can provide a feature similar to Snowpack 3.0, the new [Streaming NPM Imports](https://www.snowpack.dev/posts/2020-12-03-snowpack-3-release-candidate), which allos to skip the NPM install and node_modules.
+It can provide a feature similar to Snowpack 3.0, the new [Streaming NPM Imports](https://www.snowpack.dev/posts/2020-12-03-snowpack-3-release-candidate), which allows to skip the NPM install and node_modules.
 
 ```javascript
 //index.js
