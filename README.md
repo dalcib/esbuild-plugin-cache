@@ -52,7 +52,7 @@ console.log(React.version)
 import esbuild from 'esbuild'
 import { cache } from 'esbuild-plugin-cache'
 
-const importap = {
+const importmap = {
   imports: {
     react: 'https://cdn.skypack.dev/react@17.0.1',
   },
