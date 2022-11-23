@@ -2,7 +2,8 @@
   "name": "esbuild-plugin-cache",
   "version": "0.2.9",
   "description": "Esbuid plugin to use cache for http/https",
-  "main": "index.js",
+  "main": "index.cjs",
+  "module": "index.js",
   "type": "module",
   "typings": "index.d.ts",
   "exports": {
